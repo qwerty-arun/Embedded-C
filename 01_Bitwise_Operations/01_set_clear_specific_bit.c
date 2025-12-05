@@ -32,7 +32,12 @@ Explanation:
 #include <stdio.h>
 
 unsigned char modifyBit(unsigned char reg, int pos, int mode) {
-    
+    if(mode == 0){
+        reg &= ~(1 << pos);
+    }else{
+        reg |= (1 << pos);
+    }
+    return reg;
 }
 
 int main() {
