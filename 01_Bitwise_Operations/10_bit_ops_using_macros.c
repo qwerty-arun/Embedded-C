@@ -36,13 +36,15 @@ Output: 132
 #include <stdint.h>
 
 // Define bitwise macros here
+#define SET_BIT(r, b)    ((r) |= (1 << (b)))
+#define CLEAR_BIT(r, b)  ((r) &= ~(1 << (b)))
+#define TOGGLE_BIT(r, b) ((r) ^= (1 << (b)))
 
 uint8_t modify_register(uint8_t reg) {
-    // Apply operations in order
-    reg |= (1 << 2);
-    reg |= (1 << 7);
-    reg &= ~(1 << 3);
-    reg ^= (1 << 5);
+    SET_BIT(reg, 2);      // Set bit 2
+    SET_BIT(reg, 7);      // Set bit 7
+    CLEAR_BIT(reg, 3);    // Clear bit 3
+    TOGGLE_BIT(reg, 5);   // Toggle bit 5
     return reg;
 }
 
