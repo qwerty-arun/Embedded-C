@@ -29,6 +29,7 @@
 
 #define POWER_OF_TWO(n) (n>0 && (n & (n-1))==0)
 
+// Count no. of set bits in a register
 int count_set_bits(int n){
     int count = 0;
     while(n){
@@ -38,6 +39,7 @@ int count_set_bits(int n){
     return count;
 }
 
+// Reverse all bits
 uint8_t bit_reversal(uint8_t reg){
     uint8_t result = 0;
     for (int i = 0; i < 8; i++) {
@@ -46,6 +48,15 @@ uint8_t bit_reversal(uint8_t reg){
         reg >>= 1; // Shift input right and process next bit
     }
     return result;
+}
+
+// Bit Spreading Logic: Insert Zeros in between
+uint16_t bit_spreading(const uint8_t val){
+    uint16_t r = val;
+    r = (r | (r << 4)) & 0x0F0F; // Spread nibbles
+    r = (r | (r << 2)) & 0x3333; // Spread pairs
+    r = (r | (r << 4)) & 0x0F0F; // Spread individual bits
+    return r;
 }
 
 int main()
